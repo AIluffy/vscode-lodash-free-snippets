@@ -1,0 +1,151 @@
+{
+	"chunk": {
+		"prefix": "_chunk",
+		"body": [
+			"const chunk = (${array}, ${size}) =>",
+			"   input.reduce((arr, item, idx) => {",
+			"       return idx % size === 0",
+			"           ? [...arr, [item]]",
+			"           : [...arr.slice(0, -1), [...arr.slice(-1)[0], item]];",
+			"       }, []);"
+		],
+		"description": "Creates an array of elements split into groups the length of `size`.\nIf `array` can't be split evenly, the final chunk will be the remaining\nelements."
+	},
+	"compact": {
+		"prefix": "_compact",
+		"body": ["${array: []}.filter(${boolean})"],
+		"description": "Creates an array with all falsey values removed. The values `false`, `null`,\n`0`, `\"\"`, `undefined`, and `NaN` are falsey."
+	},
+	"concat": {
+		"prefix": "_concat",
+		"body": ["${array: []}.concat(${array: []})"],
+		"description": "Creates a new array concatenating `array` with any additional arrays\nand/or values."
+	},
+	"difference": {
+		"prefix": "_difference",
+		"body": [
+			"[${array1: []}, ${array2: []}].reduce((a, b) => a.filter(c => !b.includes(c)))"
+		],
+		"description": "Creates an array of `array` values not included in the other given arrays\nusing [`SameValueZero`](http://ecma-international.org/ecma-262/7.0/#sec-samevaluezero)\nfor equality comparisons. The order and references of result values are\ndetermined by the first array.\n\n**Note:** Unlike `_.pullAll`, this method returns a new array."
+	},
+	"drop": {
+		"prefix": "_drop",
+		"body": ["${array: []}.slice(${num})"],
+		"description": "Creates a slice of `array` with `n` elements dropped from the beginning."
+	},
+	"dropRight": {
+		"prefix": "_dropRight",
+		"body": ["${array: []}.slice(0, -${num})"],
+		"description": "Creates a slice of `array` with `n` elements dropped from the end."
+	},
+	"fill": {
+		"prefix": "_fill",
+		"body": ["${array: []}.fill(${value}, ${start}, ${end})"],
+		"description": "Fills elements of `array` with `value` from `start` up to, but not\nincluding, `end`.\n\n**Note:** This method mutates `array`."
+	},
+	"find": {
+		"prefix": "_find",
+		"body": ["${collection}.find((${item: item}, ${index: index}) => {})"],
+		"description": "Iterates over elements of `collection`, returning the first element\n`predicate` returns truthy for. The predicate is invoked with three\narguments: (value, index|key, collection)."
+	},
+	"findIndex": {
+		"prefix": "_findIndex",
+		"body": [
+			"${array: []}.findIndex((${item: item}, ${index: index}) => {})"
+		],
+		"description": "This method is like `_.find` except that it returns the index of the first\nelement `predicate` returns truthy for instead of the element itself."
+	},
+	"first": {
+		"prefix": "_first",
+		"body": ["${array: []}.slice(0, ${number: 1})"],
+		"description": "Gets the first element of `array`."
+	},
+	"flatten": {
+		"prefix": "_flatten",
+		"body": ["[].concat(...${array: []})"],
+		"description": "Flattens `array` a single level deep."
+	},
+	"flattenDeep": {
+		"prefix": "_flattenDeep",
+		"body": [
+			"const flattenDeep = (arr) => Array.isArray(arr)",
+			"  ? arr.reduce( (a, b) => a.concat(flattenDeep(b)) , [])",
+			"  : [arr]"
+		],
+		"description": "Recursively flattens `array`."
+	},
+	"fromPairs": {
+		"prefix": "_fromPairs",
+		"body": [
+			"const fromPairs = (arr) => arr.reduce((acc, val) => (acc[val[0]] = val[1], acc), {})"
+		],
+		"description": "The inverse of `_.toPairs`; this method returns an object composed\nfrom key-value `pairs`."
+	},
+	"head": {
+		"prefix": "_head",
+		"body": ["const [ head, ...tail ] = ${array: []}"],
+		"description": "Gets the first element of array."
+	},
+	"tail": {
+		"prefix": "_tail",
+		"body": ["const [ ...head, tail ] = ${array: []}"],
+		"description": "Gets all but the first element of `array`."
+	},
+	"indexOf": {
+		"prefix": "_indexOf",
+		"body": ["${array: []}.indexOf(${value})"],
+		"description": "Gets the index at which the first occurrence of `value` is found in `array`\nusing [`SameValueZero`](http://ecma-international.org/ecma-262/7.0/#sec-samevaluezero)\nfor equality comparisons. If `fromIndex` is negative, it's used as the\noffset from the end of `array`."
+	},
+	"intersection": {
+		"prefix": "_intersection",
+		"body": [
+			"[${array1: []}, ${array2: []}].reduce((a, b) => a.filter(c => b.includes(c)))"
+		],
+		"description": "Creates an array of unique values that are included in all given arrays\nusing [`SameValueZero`](http://ecma-international.org/ecma-262/7.0/#sec-samevaluezero)\nfor equality comparisons. The order and references of result values are\ndetermined by the first array."
+	},
+	"takeRight": {
+		"prefix": "_takeRight",
+		"body": ["${array: []}.slice(-${number: 1})"],
+		"description": "Creates a slice of `array` with `n` elements taken from the end."
+	},
+	"isArray": {
+		"prefix": "_isArray",
+		"body": ["Array.isArray(${array})"],
+		"description": "Checks if `value` is classified as an `Array` object."
+	},
+	"isArrayBuffer": {
+		"prefix": "_isArrayBuffer",
+		"body": ["${value} instanceof ArrayBuffer"],
+		"description": "Checks if `value` is classified as an `ArrayBuffer` object."
+	},
+	"join": {
+		"prefix": "_join",
+		"body": ["${array: []}.join('${separator}')"],
+		"description": "Converts all elements in `array` into a string separated by `separator`."
+	},
+	"last": {
+		"prefix": "_last",
+		"body": ["${array: []}[${array: []}.length - ${number: 1}]"],
+		"description": "Gets the last element of `array`."
+	},
+	"lastIndexOf": {
+		"prefix": "_lastIndexOf",
+		"body": ["${array: []}.lastIndexOf(${value})"],
+		"description": "This method is like `_.indexOf` except that it iterates over elements of\n`array` from right to left."
+	},
+	"reverse": {
+		"prefix": "_reverse",
+		"body": ["${array: []}.reverse()"],
+		"description": "This method is the wrapper version of `_.reverse`.\n\n**Note:** This method mutates the wrapped array."
+	},
+	"slice": {
+		"prefix": "_slice",
+		"body": ["${array: []}.slice(${start}, ${end})"],
+		"description": "Creates a slice of `array` from `start` up to, but not including, `end`.\n\n**Note:** This method is used instead of\n[`Array#slice`](https://mdn.io/Array/slice) to ensure dense arrays are\nreturned."
+	},
+	"without": {
+		"prefix": "_without",
+		"body": ["${array: []}.filter(v => v !== ${value})"],
+		"description": "Creates an array excluding all given values using\n[`SameValueZero`](http://ecma-international.org/ecma-262/7.0/#sec-samevaluezero)\nfor equality comparisons.\n\n**Note:** Unlike `_.pull`, this method returns a new array."
+	}
+}
