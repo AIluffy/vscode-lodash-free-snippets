@@ -322,5 +322,187 @@
 		"prefix": "_assign",
 		"body": ["Object.assign({}, ${object}, ${sources});"],
 		"description": "Assigns own enumerable string keyed properties of source objects to the\ndestination object. Source objects are applied from left to right.\nSubsequent sources overwrite property assignments of previous sources.\n\n**Note:** This method mutates `object` and is loosely based on\n[`Object.assign`](https://mdn.io/Object/assign)."
+	},
+	"extend": {
+		"prefix": "_extend",
+		"body": [
+			"const extend = (target, ...sources) => {",
+			"  const length = sources.length;",
+			"  if (length < 1 || target == null) return target;",
+			"  for (let i = 0; i < length; i++) {",
+			"    const source = sources[i];",
+			"    for (const key in source) {",
+			"      target[key] = source[key];",
+			"    }",
+			"  }",
+			"  return target;",
+			"};"
+		],
+		"description": "This method is like `_.assign` except that it iterates over own and\ninherited source properties.\n\n**Note:** This method mutates `object`."
+	},
+	"get": {
+		"prefix": "_get",
+		"body": [
+			"const get = (obj, path, defaultValue) => {",
+			"  const travel = regexp =>",
+			"    String.prototype.split",
+			"      .call(path, regexp)",
+			"      .filter(Boolean)",
+			"      .reduce((res, key) => (res !== null && res !== undefined ? res[key] : res), obj);",
+			"  const result = travel(/[,[]]+?/) || travel(/[,[].]+?/);",
+			"  return result === undefined || result === obj ? defaultValue : result;",
+			"};"
+		],
+		"description": "Gets the value at `path` of `object`. If the resolved value is\n`undefined`, the `defaultValue` is returned in its place."
+	},
+	"keys": {
+		"prefix": "_keys",
+		"body": ["Object.keys(${object})"],
+		"description": "Creates an array of the own enumerable property names of `object`.\n\n**Note:** Non-object values are coerced to objects. See the\n[ES spec](http://ecma-international.org/ecma-262/7.0/#sec-object.keys)\nfor more details."
+	},
+	"omit": {
+		"prefix": "_omit",
+		"body": ["const { ${key1}, ${key2}, ...result } = ${object}"],
+		"description": "The opposite of `_.pick`; this method creates an object composed of the\nown and inherited enumerable property paths of `object` that are not omitted.\n\n**Note:** This method is considerably slower than `_.pick`."
+	},
+	"pick": {
+		"prefix": "_pick",
+		"body": ["const { ${key1}, ${key2} } = ${object: {}};"],
+		"description": "Creates an object composed of the picked `object` properties."
+	},
+	"pickBy": {
+		"prefix": "_pickBy",
+		"body": [
+			"function pickBy(object) {",
+			"  const obj = {};",
+			"  for (const key in object) {",
+			"    if (object[key] !== null && object[key] !== false && object[key] !== undefined) {",
+			"      obj[key] = object[key];",
+			"    }",
+			"  }",
+			"  return obj;",
+			"}"
+		],
+		"description": "Creates an object composed of the `object` properties `predicate` returns\ntruthy for. The predicate is invoked with two arguments: (value, key)."
+	},
+	"toPairs": {
+		"prefix": "_toPairs",
+		"body": ["Object.entries(${object})"],
+		"description": "Creates an array of own enumerable string keyed-value pairs for object which can be consumed by _.fromPairs. If object is a map or set, its entries are returned."
+	},
+	"values": {
+		"prefix": "_values",
+		"body": ["Object.values(${object})"],
+		"description": "Creates an array of the own enumerable string keyed property values of `object`.\n\n**Note:** Non-object values are coerced to objects."
+	},
+	"endsWith": {
+		"prefix": "_endsWith",
+		"body": ["${string}.endsWith(${target}, ${position})"],
+		"description": "Checks if `string` ends with the given target string."
+	},
+	"isString": {
+		"prefix": "_isString",
+		"body": [
+			"function isString(str){",
+			"  if (str && typeof str.valueOf() === 'string') {",
+			"    return true",
+			"  }",
+			"  return false",
+			"}"
+		],
+		"description": "Checks if `value` is classified as a `String` primitive or object."
+	},
+	"padStart": {
+		"prefix": "_padStart",
+		"body": ["${string}.padStart(${length}, ${chars})"],
+		"description": "Pads `string` on the left side if it's shorter than `length`. Padding\ncharacters are truncated if they exceed `length`."
+	},
+	"padEnd": {
+		"prefix": "_padEnd",
+		"body": ["${string}.padEnd(${length}, ${chars})"],
+		"description": "Pads `string` on the right side if it's shorter than `length`. Padding\ncharacters are truncated if they exceed `length`."
+	},
+	"startsWith": {
+		"prefix": "_startsWith",
+		"body": ["${string}.startsWith(${target}, ${position})"],
+		"description": "Checks if `string` starts with the given target string."
+	},
+	"repeat": {
+		"prefix": "_repeat",
+		"body": ["${string}.repeat(${n})"],
+		"description": "Repeats the given string `n` times."
+	},
+	"replace": {
+		"prefix": "_replace",
+		"body": ["${string}.replace(${pattern}, ${replacement})"],
+		"description": "Replaces matches for `pattern` in `string` with `replacement`.\n\n**Note:** This method is based on\n[`String#replace`](https://mdn.io/String/replace)."
+	},
+	"split": {
+		"prefix": "_split",
+		"body": ["${string}.split(${separator}, ${limit})"],
+		"description": "Splits `string` by `separator`.\n\n**Note:** This method is based on\n[`String#split`](https://mdn.io/String/split)."
+	},
+	"toLower": {
+		"prefix": "_toLower",
+		"body": ["${string}.toLowerCase()"],
+		"description": "Converts `string`, as a whole, to lower case just like\n[String#toLowerCase](https://mdn.io/toLowerCase)."
+	},
+	"toUpper": {
+		"prefix": "_toUpper",
+		"body": ["${string}.toUpperCase()"],
+		"description": "Converts `string`, as a whole, to upper case just like\n[String#toUpperCase](https://mdn.io/toUpperCase)."
+	},
+	"trim": {
+		"prefix": "_trim",
+		"body": ["${string}.trim()"],
+		"description": "Removes leading and trailing whitespace or specified characters from `string`."
+	},
+	"upperFirst": {
+		"prefix": "_upperFirst",
+		"body": [
+			"const upperFirst = (string) => {",
+			"  return string ? string.charAt(0).toUpperCase() + string.slice(1) : ''",
+			"}"
+		],
+		"description": "Converts the first character of `string` to upper case."
+	},
+	"times": {
+		"prefix": "_times",
+		"body": ["[...Array(${n}).keys()]"],
+		"description": "Invokes the iteratee `n` times, returning an array of the results of\neach invocation. The iteratee is invoked with one argument; (index)."
+	},
+	"clamp": {
+		"prefix": "_clamp",
+		"body": [
+			"const clamp = (number, boundOne, boundTwo) => {",
+			"  if (!boundTwo) {",
+			"    return Math.max(number, boundOne) === boundOne ? number : boundOne; ",
+			"  } else if (Math.min(number, boundOne) === number) {",
+			"    return boundOne;",
+			"  } else if (Math.max(number, boundTwo) === number) {",
+			"    return boundTwo;",
+			"  }",
+			"  return number;",
+			"};"
+		],
+		"description": "Clamps `number` within the inclusive `lower` and `upper` bounds."
+	},
+	"inRange": {
+		"prefix": "_inRange",
+		"body": [
+			"const inRange = (num, a, b=0) => (Math.min(a,b) <= num && num < Math.max(a,b));"
+		],
+		"description": "Checks if `n` is between `start` and up to, but not including, `end`. If\n`end` is not specified, it's set to `start` with `start` then set to `0`.\nIf `start` is greater than `end` the params are swapped to support\nnegative ranges."
+	},
+	"random": {
+		"prefix": "_random",
+		"body": [
+			"const random = (a = 1, b = 0) => {",
+			"  const lower = Math.min(a, b);",
+			"  const upper = Math.max(a, b);",
+			"  return lower + Math.random() * (upper - lower);",
+			"}'"
+		],
+		"description": "Produces a random number between the inclusive `lower` and `upper` bounds.\nIf only one argument is provided a number between `0` and the given number\nis returned. If `floating` is `true`, or either `lower` or `upper` are\nfloats, a floating-point number is returned instead of an integer.\n\n**Note:** JavaScript follows the IEEE-754 standard for resolving\nfloating-point values which can produce unexpected results."
 	}
 }
