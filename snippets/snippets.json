@@ -2,240 +2,237 @@
 	"chunk": {
 		"prefix": "_chunk",
 		"body": [
-			"const chunk = (${array}, ${size}) =>",
-			"   input.reduce((arr, item, idx) => {",
-			"       return idx % size === 0",
-			"           ? [...arr, [item]]",
-			"           : [...arr.slice(0, -1), [...arr.slice(-1)[0], item]];",
-			"       }, []);"
+			"const chunk = (array = [], size = 0) =>",
+			"    array.reduce((arr, item, idx) => {",
+			"        return idx % size === 0",
+			"            ? [...arr, [item]]",
+			"            : [...arr.slice(0, -1), [...arr.slice(-1)[0], item]];",
+			"    }, []);$0"
 		],
 		"description": "Creates an array of elements split into groups the length of `size`.\nIf `array` can't be split evenly, the final chunk will be the remaining\nelements."
 	},
 	"compact": {
 		"prefix": "_compact",
-		"body": ["${array: []}.filter(${boolean})"],
+		"body": ["${1:array}.filter(Boolean);$0"],
 		"description": "Creates an array with all falsey values removed. The values `false`, `null`,\n`0`, `\"\"`, `undefined`, and `NaN` are falsey."
 	},
 	"concat": {
 		"prefix": "_concat",
-		"body": ["${array: []}.concat(${array: []})"],
+		"body": ["${1:array1}.concat(${2:array2});$0"],
 		"description": "Creates a new array concatenating `array` with any additional arrays\nand/or values."
 	},
 	"difference": {
 		"prefix": "_difference",
 		"body": [
-			"[${array1: []}, ${array2: []}].reduce((a, b) => a.filter(c => !b.includes(c)))"
+			"[${1:array1}, ${2:array2}].reduce((a, b) => a.filter(c => !b.includes(c)));$0"
 		],
 		"description": "Creates an array of `array` values not included in the other given arrays\nusing [`SameValueZero`](http://ecma-international.org/ecma-262/7.0/#sec-samevaluezero)\nfor equality comparisons. The order and references of result values are\ndetermined by the first array.\n\n**Note:** Unlike `_.pullAll`, this method returns a new array."
 	},
 	"drop": {
 		"prefix": "_drop",
-		"body": ["${array: []}.slice(${num})"],
+		"body": ["${1:array}.slice(${2:num});$0"],
 		"description": "Creates a slice of `array` with `n` elements dropped from the beginning."
 	},
 	"dropRight": {
 		"prefix": "_dropRight",
-		"body": ["${array: []}.slice(0, -${num})"],
+		"body": ["${1:array}.slice(0, -${2:num});$0"],
 		"description": "Creates a slice of `array` with `n` elements dropped from the end."
 	},
 	"fill": {
 		"prefix": "_fill",
-		"body": ["${array: []}.fill(${value}, ${start}, ${end})"],
+		"body": ["${1:array}.fill(${2:value}, ${3:start}, ${4:end});$0"],
 		"description": "Fills elements of `array` with `value` from `start` up to, but not\nincluding, `end`.\n\n**Note:** This method mutates `array`."
 	},
 	"find": {
 		"prefix": "_find",
-		"body": ["${collection}.find((${item: item}, ${index: index}) => {})"],
+		"body": ["${1:array}.find((${2:item}, ${3:index}) => {${4}});$0"],
 		"description": "Iterates over elements of `collection`, returning the first element\n`predicate` returns truthy for. The predicate is invoked with three\narguments: (value, index|key, collection)."
 	},
 	"findIndex": {
 		"prefix": "_findIndex",
-		"body": [
-			"${array: []}.findIndex((${item: item}, ${index: index}) => {})"
-		],
+		"body": ["${1:array}.findIndex((${2:item}, ${3:index}) => {${4}});$0"],
 		"description": "This method is like `_.find` except that it returns the index of the first\nelement `predicate` returns truthy for instead of the element itself."
 	},
 	"first": {
 		"prefix": "_first",
-		"body": ["${array: []}.slice(0, ${number: 1})"],
+		"body": ["${1:array}.slice(0, ${2:number});$0"],
 		"description": "Gets the first element of `array`."
 	},
 	"flatten": {
 		"prefix": "_flatten",
-		"body": ["[].concat(...${array: []})"],
+		"body": ["[].concat(...${1:array});$0"],
 		"description": "Flattens `array` a single level deep."
 	},
 	"flattenDeep": {
 		"prefix": "_flattenDeep",
 		"body": [
 			"const flattenDeep = (arr) => Array.isArray(arr)",
-			"  ? arr.reduce( (a, b) => a.concat(flattenDeep(b)) , [])",
-			"  : [arr]"
+			"    ? arr.reduce( (a, b) => a.concat(flattenDeep(b)) , [])",
+			"    : [arr];$0"
 		],
 		"description": "Recursively flattens `array`."
 	},
 	"fromPairs": {
 		"prefix": "_fromPairs",
 		"body": [
-			"const fromPairs = (arr) => arr.reduce((acc, val) => (acc[val[0]] = val[1], acc), {})"
+			"const fromPairs = (arr) => arr.reduce((acc, val) => (acc[val[0]] = val[1], acc), {});$0"
 		],
 		"description": "The inverse of `_.toPairs`; this method returns an object composed\nfrom key-value `pairs`."
 	},
 	"head": {
 		"prefix": "_head",
-		"body": ["const [ head, ...tail ] = ${array: []}"],
+		"body": ["const [head, ...tail] = ${1:array};$0"],
 		"description": "Gets the first element of array."
 	},
 	"tail": {
 		"prefix": "_tail",
-		"body": ["const [ head, ...tail ] = ${array: []}"],
+		"body": ["const [head, ...tail] = ${1:array};$0"],
 		"description": "Gets all but the first element of `array`."
 	},
 	"indexOf": {
 		"prefix": "_indexOf",
-		"body": ["${array: []}.indexOf(${value})"],
+		"body": ["${1:array}.indexOf(${2:value});$0"],
 		"description": "Gets the index at which the first occurrence of `value` is found in `array`\nusing [`SameValueZero`](http://ecma-international.org/ecma-262/7.0/#sec-samevaluezero)\nfor equality comparisons. If `fromIndex` is negative, it's used as the\noffset from the end of `array`."
 	},
 	"intersection": {
 		"prefix": "_intersection",
 		"body": [
-			"[${array1: []}, ${array2: []}].reduce((a, b) => a.filter(c => b.includes(c)))"
+			"[${1:array1}, ${2:array2}].reduce((a, b) => a.filter(c => b.includes(c)));$0"
 		],
 		"description": "Creates an array of unique values that are included in all given arrays\nusing [`SameValueZero`](http://ecma-international.org/ecma-262/7.0/#sec-samevaluezero)\nfor equality comparisons. The order and references of result values are\ndetermined by the first array."
 	},
 	"takeRight": {
 		"prefix": "_takeRight",
-		"body": ["${array: []}.slice(-${number: 1})"],
+		"body": ["${1:array}.slice(-${2:number});$0"],
 		"description": "Creates a slice of `array` with `n` elements taken from the end."
 	},
 	"isArray": {
 		"prefix": "_isArray",
-		"body": ["Array.isArray(${array})"],
+		"body": ["Array.isArray(${1:array});$0"],
 		"description": "Checks if `value` is classified as an `Array` object."
 	},
 	"isArrayBuffer": {
 		"prefix": "_isArrayBuffer",
-		"body": ["${value} instanceof ArrayBuffer"],
+		"body": ["${1:value} instanceof ArrayBuffer;$0"],
 		"description": "Checks if `value` is classified as an `ArrayBuffer` object."
 	},
 	"join": {
 		"prefix": "_join",
-		"body": ["${array: []}.join('${separator}')"],
+		"body": ["${1:array}.join('${2:separator}');$0"],
 		"description": "Converts all elements in `array` into a string separated by `separator`."
 	},
 	"last": {
 		"prefix": "_last",
-		"body": ["${array: []}[${array: []}.length - ${number: 1}]"],
+		"body": ["${1:array}[${1:array}.length - ${2:number}];$0"],
 		"description": "Gets the last element of `array`."
 	},
 	"lastIndexOf": {
 		"prefix": "_lastIndexOf",
-		"body": ["${array: []}.lastIndexOf(${value})"],
+		"body": ["${1:array}.lastIndexOf(${2:value});$0"],
 		"description": "This method is like `_.indexOf` except that it iterates over elements of\n`array` from right to left."
 	},
 	"reverse": {
 		"prefix": "_reverse",
-		"body": ["${array: []}.reverse()"],
+		"body": ["${1:array}.reverse();$0"],
 		"description": "This method is the wrapper version of `_.reverse`.\n\n**Note:** This method mutates the wrapped array."
 	},
 	"slice": {
 		"prefix": "_slice",
-		"body": ["${array: []}.slice(${start}, ${end})"],
+		"body": ["${1:array}.slice(${2:start}, ${3:end});$0"],
 		"description": "Creates a slice of `array` from `start` up to, but not including, `end`.\n\n**Note:** This method is used instead of\n[`Array#slice`](https://mdn.io/Array/slice) to ensure dense arrays are\nreturned."
 	},
 	"without": {
 		"prefix": "_without",
-		"body": ["${array: []}.filter(v => v !== ${value})"],
+		"body": ["${1:array}.filter(v => v !== ${2:value});$0"],
 		"description": "Creates an array excluding all given values using\n[`SameValueZero`](http://ecma-international.org/ecma-262/7.0/#sec-samevaluezero)\nfor equality comparisons.\n\n**Note:** Unlike `_.pull`, this method returns a new array."
 	},
 	"each-array": {
 		"prefix": "_each-array",
-		"body": [
-			"${array: []}.forEach((${value: value}, ${index: index}) => {})"
-		],
+		"body": ["${1:array}.forEach((${2:item}, ${3:index}) => {${4}});$0"],
 		"description": "Iterates over elements of `collection` and invokes `iteratee` for each element.\nThe iteratee is invoked with three arguments: (value, index|key, collection).\nIteratee functions may exit iteration early by explicitly returning `false`.\n\n**Note:** As with other \"Collections\" methods, objects with a \"length\"\nproperty are iterated like arrays. To avoid this behavior use `_.forIn`\nor `_.forOwn` for object iteration."
 	},
 	"each-object": {
 		"prefix": "_each-object",
 		"body": [
-			"Object.entries(${collection: {}}).forEach(([${key: key}, ${value: value}], ${index: index}) => {})"
+			"Object.entries(${1:collection).forEach(([${2:key}, ${3:value}], ${4:index}) => {${5}}});$0"
 		],
 		"description": "Iterates over elements of `collection` and invokes `iteratee` for each element.\nThe iteratee is invoked with three arguments: (value, index|key, collection).\nIteratee functions may exit iteration early by explicitly returning `false`.\n\n**Note:** As with other \"Collections\" methods, objects with a \"length\"\nproperty are iterated like arrays. To avoid this behavior use `_.forIn`\nor `_.forOwn` for object iteration."
 	},
 	"every": {
 		"prefix": "_every",
-		"body": ["${collection: []}.every(() => {})"],
+		"body": ["${1:array}.every((${2:item}, ${3:index}) => {${4}});$0"],
 		"description": "Checks if `predicate` returns truthy for **all** elements of `collection`.\nIteration is stopped once `predicate` returns falsey. The predicate is\ninvoked with three arguments: (value, index|key, collection).\n\n**Note:** This method returns `true` for\n[empty collections](https://en.wikipedia.org/wiki/Empty_set) because\n[everything is true](https://en.wikipedia.org/wiki/Vacuous_truth) of\nelements of empty collections."
 	},
 	"filter": {
 		"prefix": "_filter",
-		"body": ["${collection: []}.filter(() => {})"],
+		"body": ["${1:array}.filter((${2:item}, ${3:index}) => {${4}});$0"],
 		"description": "Iterates over elements of `collection`, returning an array of all elements\n`predicate` returns truthy for. The predicate is invoked with three\narguments: (value, index|key, collection).\n\n**Note:** Unlike `_.remove`, this method returns a new array."
 	},
 	"groupBy": {
 		"prefix": "_groupBy",
 		"body": [
-			"${collection: []}.reduce((r, v, i, a, k = ${key}) => ((r[k] || (r[k] = [])).push(v), r), {})"
+			"${1:array}.reduce((r, v, i, a, k = ${2:key}) => ((r[k] || (r[k] = [])).push(v), r), {});$0"
 		],
 		"description": "Creates an object composed of keys generated from the results of running\neach element of `collection` thru `iteratee`. The order of grouped values\nis determined by the order they occur in `collection`. The corresponding\nvalue of each key is an array of elements responsible for generating the\nkey. The iteratee is invoked with one argument: (value)."
 	},
 	"includes": {
 		"prefix": "_includes",
-		"body": ["${collection: []}.includes(${value})"],
+		"body": ["${1:array}.includes(${2:value});$0"],
 		"description": "Checks if `value` is in `collection`. If `collection` is a string, it's\nchecked for a substring of `value`, otherwise\n[`SameValueZero`](http://ecma-international.org/ecma-262/7.0/#sec-samevaluezero)\nis used for equality comparisons. If `fromIndex` is negative, it's used as\nthe offset from the end of `collection`."
 	},
 	"keyBy": {
 		"prefix": "_keyBy",
 		"body": [
 			"const keyBy = (array, key) => (array || []).reduce((r, x) => ({ ...r, [key ? x[key] : x]: x }), {});",
+			"",
 			"const collectionKeyBy = (collection, key) => {",
-			"  const c = collection || {};",
-			"  return c.isArray() ? keyBy(c, key) : Object.values(keyBy(c, key));",
-			"}"
+			"    const c = collection || {};",
+			"    return Array.isArray(c) ? keyBy(c, key) : keyBy(Object.values(c), key);",
+			"};$0"
 		],
 		"description": "Creates an object composed of keys generated from the results of running\neach element of `collection` thru `iteratee`. The corresponding value of\neach key is the last element responsible for generating the key. The\niteratee is invoked with one argument: (value)."
 	},
 	"map": {
 		"prefix": "_map",
-		"body": ["${collection: []}.map(() => {})"],
+		"body": ["${1:array}.map((${2:item}, ${3:index}) => {${4}});$0"],
 		"description": "Creates an array of values by running each element in `collection` thru\n`iteratee`. The iteratee is invoked with three arguments:\n(value, index|key, collection).\n\nMany lodash methods are guarded to work as iteratees for methods like\n`_.every`, `_.filter`, `_.map`, `_.mapValues`, `_.reject`, and `_.some`.\n\nThe guarded methods are:\n`ary`, `chunk`, `curry`, `curryRight`, `drop`, `dropRight`, `every`,\n`fill`, `invert`, `parseInt`, `random`, `range`, `rangeRight`, `repeat`,\n`sampleSize`, `slice`, `some`, `sortBy`, `split`, `take`, `takeRight`,\n`template`, `trim`, `trimEnd`, `trimStart`, and `words`"
 	},
 	"minBy": {
 		"prefix": "_minBy",
 		"body": [
-			"const minBy = (collection, key) => {",
-			"  const select = (a, b) => a[key] <= b[key] ? a : b",
-			"  return collection.reduce(select, {})",
-			"}"
+			"const minBy = (array, key) => {",
+			"    const select = (a, b) => a[key] <= b[key] ? a : b;",
+			"    return array.reduce(select, {});",
+			"};$0"
 		],
 		"description": "This method is like `_.min` except that it accepts `iteratee` which is\ninvoked for each element in `array` to generate the criterion by which\nthe value is ranked. The iteratee is invoked with one argument: (value)."
 	},
 	"maxBy": {
 		"prefix": "_maxBy",
 		"body": [
-			"const maxBy = (collection, key) => {",
-			"  const select = (a, b) => a[key] >= b[key] ? a : b",
-			"  return collection.reduce(select, {})",
-			"}"
+			"const maxBy = (array, key) => {",
+			"    const select = (a, b) => a[key] >= b[key] ? a : b;",
+			"    return array.reduce(select, {});",
+			"};$0"
 		],
 		"description": "This method is like `_.max` except that it accepts `iteratee` which is\ninvoked for each element in `array` to generate the criterion by which\nthe value is ranked. The iteratee is invoked with one argument: (value)."
 	},
 	"reduce": {
 		"prefix": "_reduce",
 		"body": [
-			"${collection: []}.reduce((${previousValue: previousValue}, ${currentValue: currentValue}, ${currentIndex: currentIndex}, ${array: array}) => {}, ${accumulator})"
+			"${1:array}.reduce((${2:previousValue}, ${3:currentValue}, ${4:currentIndex}, ${5:array}) => {${7}}, ${6:accumulator});$0"
 		],
 		"description": "Reduces `collection` to a value which is the accumulated result of running\neach element in `collection` thru `iteratee`, where each successive\ninvocation is supplied the return value of the previous. If `accumulator`\nis not given, the first element of `collection` is used as the initial\nvalue. The iteratee is invoked with four arguments:\n(accumulator, value, index|key, collection).\n\nMany lodash methods are guarded to work as iteratees for methods like\n`_.reduce`, `_.reduceRight`, and `_.transform`.\n\nThe guarded methods are:\n`assign`, `defaults`, `defaultsDeep`, `includes`, `merge`, `orderBy`,\nand `sortBy`"
 	},
 	"range": {
 		"prefix": "_range",
-		"body": ["Array.from({length: ${number: num}}, (_, i) => i) "],
+		"body": ["Array.from({length: ${1:num}}, (_, i) => ${2:i});$0"],
 		"description": "Creates an array of numbers (positive and/or negative) progressing from\n`start` up to, but not including, `end`. A step of `-1` is used if a negative\n`start` is specified without an `end` or `step`. If `end` is not specified,\nit's set to `start` with `start` then set to `0`.\n\n**Note:** JavaScript follows the IEEE-754 standard for resolving\nfloating-point values which can produce unexpected results."
 	},
 	"reduceRight": {
 		"prefix": "_reduceRight",
 		"body": [
-			"${collection: []}.reduceRight((${previousValue: previousValue}, ${currentValue: currentValue}, ${currentIndex: currentIndex}, ${array: array}) => {}, ${accumulator})"
+			"${1:array}.reduceRight((${2:previousValue}, ${3:currentValue}, ${4:currentIndex}, ${5:array}) => {${7}}, ${6:accumulator});$0"
 		],
 		"description": "This method is like `_.reduce` except that it iterates over elements of\n`collection` from right to left."
 	},
@@ -243,41 +240,41 @@
 		"prefix": "_sample",
 		"body": [
 			"const sample = arr => {",
-			"  const len = arr == null ? 0 : arr.length",
-			"  return len ? arr[Math.floor(Math.random() * len)] : undefined",
-			"}"
+			"    const len = arr == null ? 0 : arr.length;",
+			"    return len ? arr[Math.floor(Math.random() * len)] : undefined;",
+			"};$0"
 		],
 		"description": "Gets a random element from `collection`."
 	},
 	"size": {
 		"prefix": "_size",
-		"body": ["Object.keys(${collection}).length"],
+		"body": ["Object.keys(${1:collection}).length;$0"],
 		"description": "Gets the size of `collection` by returning its length for array-like\nvalues or the number of own enumerable string keyed properties for objects."
 	},
 	"some": {
 		"prefix": "_some",
-		"body": ["${collection: []}.some(() => {})"],
+		"body": ["${1:array}.some((${1:item}, ${2:index}) => {${3}});$0"],
 		"description": "Checks if `predicate` returns truthy for **any** element of `collection`.\nIteration is stopped once `predicate` returns truthy. The predicate is\ninvoked with three arguments: (value, index|key, collection)."
 	},
 	"sortBy": {
 		"prefix": "_sortBy",
 		"body": [
 			"const sortBy = (key) => {",
-			" return (a, b) => (a[key] > b[key]) ? 1 : ((b[key] > a[key]) ? -1 : 0);",
+			"    return (a, b) => (a[key] > b[key]) ? 1 : ((b[key] > a[key]) ? -1 : 0);",
 			"};",
-			"[...${collection: []}].sort(sortBy(${key}));"
+			"[...${1:array}].sort(sortBy(${2:key}));$0"
 		],
 		"description": "Creates an array of elements, sorted in ascending order by the results of\nrunning each element in a collection thru each iteratee. This method\nperforms a stable sort, that is, it preserves the original sort order of\nequal elements. The iteratees are invoked with one argument: (value)."
 	},
 	"uniq": {
 		"prefix": "_uniq",
-		"body": ["[...new Set(${array: []})]"],
+		"body": ["[...new Set(${1:array})];$0"],
 		"description": "Creates a duplicate-free version of an array, using\n[`SameValueZero`](http://ecma-international.org/ecma-262/7.0/#sec-samevaluezero)\nfor equality comparisons, in which only the first occurrence of each element\nis kept. The order of result values is determined by the order they occur\nin the array."
 	},
 	"partial": {
 		"prefix": "_partial",
 		"body": [
-			"const partial = (func, ...boundArgs) => (...remainingArgs) => func(...boundArgs, ...remainingArgs)"
+			"const partial = (func, ...boundArgs) => (...remainingArgs) => func(...boundArgs, ...remainingArgs);$0"
 		],
 		"description": "Creates a function that invokes `func` with `partials` prepended to the\narguments it receives. This method is like `_.bind` except it does **not**\nalter the `this` binding.\n\nThe `_.partial.placeholder` value, which defaults to `_` in monolithic\nbuilds, may be used as a placeholder for partially applied arguments.\n\n**Note:** This method doesn't set the \"length\" property of partially\napplied functions."
 	},
@@ -290,53 +287,55 @@
 	},
 	"isFinite": {
 		"prefix": "_isFinite",
-		"body": ["Number.isFinite(${value})"],
+		"body": ["Number.isFinite(${1:value});$0"],
 		"description": "Checks if `value` is a finite primitive number.\n\n**Note:** This method is based on\n[`Number.isFinite`](https://mdn.io/Number/isFinite)."
 	},
 	"isInteger": {
 		"prefix": "_isInteger",
-		"body": ["Number.isInteger(${value})"],
+		"body": ["Number.isInteger(${1:value});$0"],
 		"description": "Checks if `value` is an integer.\n\n**Note:** This method is based on\n[`Number.isInteger`](https://mdn.io/Number/isInteger)."
 	},
 	"isNaN": {
 		"prefix": "_isNaN",
-		"body": ["Number.isNaN(${value})"],
+		"body": ["Number.isNaN(${1:value});$0"],
 		"description": "Checks if `value` is `NaN`.\n\n**Note:** This method is based on\n[`Number.isNaN`](https://mdn.io/Number/isNaN) and is not the same as\nglobal [`isNaN`](https://mdn.io/isNaN) which returns `true` for\n`undefined` and other non-number values."
 	},
 	"isNil": {
 		"prefix": "_isNil",
-		"body": ["const isNil = (value) => value == null"],
+		"body": ["const isNil = value => value == null;$0"],
 		"description": "Checks if `value` is `null` or `undefined`."
 	},
 	"isNull": {
 		"prefix": "_isNull",
-		"body": ["const isNull = (value) => value === null"],
+		"body": ["const isNull = value => value === null;$0"],
 		"description": "Checks if `value` is `null`."
 	},
 	"isUndefined": {
 		"prefix": "_isUndefined",
-		"body": ["const isUndefined = (value) => typeof value === 'undefined'"],
+		"body": [
+			"const isUndefined = (value) => typeof value === 'undefined';$0"
+		],
 		"description": "Checks if `value` is `undefined`."
 	},
 	"assign": {
 		"prefix": "_assign",
-		"body": ["Object.assign({}, ${object}, ${sources});"],
+		"body": ["Object.assign({}, ${1:object}, ${2:sources});$0"],
 		"description": "Assigns own enumerable string keyed properties of source objects to the\ndestination object. Source objects are applied from left to right.\nSubsequent sources overwrite property assignments of previous sources.\n\n**Note:** This method mutates `object` and is loosely based on\n[`Object.assign`](https://mdn.io/Object/assign)."
 	},
 	"extend": {
 		"prefix": "_extend",
 		"body": [
 			"const extend = (target, ...sources) => {",
-			"  const length = sources.length;",
-			"  if (length < 1 || target == null) return target;",
-			"  for (let i = 0; i < length; i++) {",
-			"    const source = sources[i];",
-			"    for (const key in source) {",
-			"      target[key] = source[key];",
-			"    }",
-			"  }",
-			"  return target;",
-			"};"
+			"    const length = sources.length;",
+			"    if (length < 1 || target == null) return target;",
+			"    for (let i = 0; i < length; i++) {",
+			"        const source = sources[i];",
+			"        for (const key in source) {",
+			"            target[key] = source[key];",
+			"        }",
+			"    };",
+			"    return target;",
+			"};$0"
 		],
 		"description": "This method is like `_.assign` except that it iterates over own and\ninherited source properties.\n\n**Note:** This method mutates `object`."
 	},
@@ -344,153 +343,154 @@
 		"prefix": "_get",
 		"body": [
 			"const get = (obj, path, defaultValue) => {",
-			"  const travel = regexp =>",
-			"    String.prototype.split",
-			"      .call(path, regexp)",
-			"      .filter(Boolean)",
-			"      .reduce((res, key) => (res !== null && res !== undefined ? res[key] : res), obj);",
-			"  const result = travel(/[,[]]+?/) || travel(/[,[].]+?/);",
-			"  return result === undefined || result === obj ? defaultValue : result;",
-			"};"
+			"    const travel = regexp =>",
+			"        String.prototype.split",
+			"        .call(path, regexp)",
+			"        .filter(Boolean)",
+			"        .reduce((res, key) => (res !== null && res !== undefined ? res[key] : res), obj);",
+			"    const result = travel(/[,[]]+?/) || travel(/[,[].]+?/);",
+			"    return result === undefined || result === obj ? defaultValue : result;",
+			"};$0"
 		],
 		"description": "Gets the value at `path` of `object`. If the resolved value is\n`undefined`, the `defaultValue` is returned in its place."
 	},
 	"keys": {
 		"prefix": "_keys",
-		"body": ["Object.keys(${object})"],
+		"body": ["Object.keys(${1:object});$0"],
 		"description": "Creates an array of the own enumerable property names of `object`.\n\n**Note:** Non-object values are coerced to objects. See the\n[ES spec](http://ecma-international.org/ecma-262/7.0/#sec-object.keys)\nfor more details."
 	},
 	"omit": {
 		"prefix": "_omit",
-		"body": ["const { ${key1}, ${key2}, ...result } = ${object}"],
+		"body": ["const {${1:key1}, ${2:key2}, ...result} = ${3:object};$0"],
 		"description": "The opposite of `_.pick`; this method creates an object composed of the\nown and inherited enumerable property paths of `object` that are not omitted.\n\n**Note:** This method is considerably slower than `_.pick`."
 	},
 	"pick": {
 		"prefix": "_pick",
-		"body": ["const { ${key1}, ${key2} } = ${object: {}};"],
+		"body": ["const {${1:key1}, ${2:key2}} = ${3:object};$0"],
 		"description": "Creates an object composed of the picked `object` properties."
 	},
 	"pickBy": {
 		"prefix": "_pickBy",
 		"body": [
 			"function pickBy(object) {",
-			"  const obj = {};",
-			"  for (const key in object) {",
-			"    if (object[key] !== null && object[key] !== false && object[key] !== undefined) {",
-			"      obj[key] = object[key];",
-			"    }",
-			"  }",
-			"  return obj;",
-			"}"
+			"    const obj = {};",
+			"    for (const key in object) {",
+			"        if (object[key] !== null && object[key] !== false && object[key] !== undefined) {",
+			"            obj[key] = object[key];",
+			"        }",
+			"    };",
+			"    return obj;",
+			"};$0"
 		],
 		"description": "Creates an object composed of the `object` properties `predicate` returns\ntruthy for. The predicate is invoked with two arguments: (value, key)."
 	},
 	"toPairs": {
 		"prefix": "_toPairs",
-		"body": ["Object.entries(${object})"],
+		"body": ["Object.entries(${1:object});$0"],
 		"description": "Creates an array of own enumerable string keyed-value pairs for object which can be consumed by _.fromPairs. If object is a map or set, its entries are returned."
 	},
 	"values": {
 		"prefix": "_values",
-		"body": ["Object.values(${object})"],
+		"body": ["Object.values(${1:object});$0"],
 		"description": "Creates an array of the own enumerable string keyed property values of `object`.\n\n**Note:** Non-object values are coerced to objects."
 	},
 	"endsWith": {
 		"prefix": "_endsWith",
-		"body": ["${string}.endsWith(${target}, ${position})"],
+		"body": ["${1:string}.endsWith(${2:target}, ${3:position});$0"],
 		"description": "Checks if `string` ends with the given target string."
 	},
 	"isString": {
 		"prefix": "_isString",
 		"body": [
 			"function isString(str){",
-			"  if (str && typeof str.valueOf() === 'string') {",
-			"    return true",
-			"  }",
-			"  return false",
-			"}"
+			"    if (str && typeof str.valueOf() === 'string') {",
+			"        return true;",
+			"    }",
+			"    return false;",
+			"};$0"
 		],
 		"description": "Checks if `value` is classified as a `String` primitive or object."
 	},
 	"padStart": {
 		"prefix": "_padStart",
-		"body": ["${string}.padStart(${length}, ${chars})"],
+		"body": ["${1:string}.padStart(${2:length}, ${3:chars});$0"],
 		"description": "Pads `string` on the left side if it's shorter than `length`. Padding\ncharacters are truncated if they exceed `length`."
 	},
 	"padEnd": {
 		"prefix": "_padEnd",
-		"body": ["${string}.padEnd(${length}, ${chars})"],
+		"body": ["${1:string}.padEnd(${2:length}, ${3:chars});$0"],
 		"description": "Pads `string` on the right side if it's shorter than `length`. Padding\ncharacters are truncated if they exceed `length`."
 	},
 	"startsWith": {
 		"prefix": "_startsWith",
-		"body": ["${string}.startsWith(${target}, ${position})"],
+		"body": ["${1:string}.startsWith(${2:target}, ${3:position});$0"],
 		"description": "Checks if `string` starts with the given target string."
 	},
 	"repeat": {
 		"prefix": "_repeat",
-		"body": ["${string}.repeat(${n})"],
+		"body": ["${1:string}.repeat(${2:num});$0"],
 		"description": "Repeats the given string `n` times."
 	},
 	"replace": {
 		"prefix": "_replace",
-		"body": ["${string}.replace(${pattern}, ${replacement})"],
+		"body": ["${1:string}.replace(${2:pattern}, ${3:replacement});$0"],
 		"description": "Replaces matches for `pattern` in `string` with `replacement`.\n\n**Note:** This method is based on\n[`String#replace`](https://mdn.io/String/replace)."
 	},
 	"split": {
 		"prefix": "_split",
-		"body": ["${string}.split(${separator}, ${limit})"],
+		"body": ["${1:string}.split(${2:separator}, ${3:limit});$0"],
 		"description": "Splits `string` by `separator`.\n\n**Note:** This method is based on\n[`String#split`](https://mdn.io/String/split)."
 	},
 	"toLower": {
 		"prefix": "_toLower",
-		"body": ["${string}.toLowerCase()"],
+		"body": ["${1:string}.toLowerCase();$0"],
 		"description": "Converts `string`, as a whole, to lower case just like\n[String#toLowerCase](https://mdn.io/toLowerCase)."
 	},
 	"toUpper": {
 		"prefix": "_toUpper",
-		"body": ["${string}.toUpperCase()"],
+		"body": ["${1:string}.toUpperCase();$0"],
 		"description": "Converts `string`, as a whole, to upper case just like\n[String#toUpperCase](https://mdn.io/toUpperCase)."
 	},
 	"trim": {
 		"prefix": "_trim",
-		"body": ["${string}.trim()"],
+		"body": ["${1:string}.trim();$0"],
 		"description": "Removes leading and trailing whitespace or specified characters from `string`."
 	},
 	"upperFirst": {
 		"prefix": "_upperFirst",
 		"body": [
 			"const upperFirst = (string) => {",
-			"  return string ? string.charAt(0).toUpperCase() + string.slice(1) : ''",
-			"}"
+			"    return string ? string.charAt(0).toUpperCase() + string.slice(1) : '';",
+			"};$0"
 		],
 		"description": "Converts the first character of `string` to upper case."
 	},
 	"times": {
 		"prefix": "_times",
-		"body": ["[...Array(${n}).keys()]"],
+		"body": ["[...Array(${1:num}).keys()];$0"],
 		"description": "Invokes the iteratee `n` times, returning an array of the results of\neach invocation. The iteratee is invoked with one argument; (index)."
 	},
 	"clamp": {
 		"prefix": "_clamp",
 		"body": [
 			"const clamp = (number, boundOne, boundTwo) => {",
-			"  if (!boundTwo) {",
-			"    return Math.max(number, boundOne) === boundOne ? number : boundOne; ",
-			"  } else if (Math.min(number, boundOne) === number) {",
-			"    return boundOne;",
-			"  } else if (Math.max(number, boundTwo) === number) {",
-			"    return boundTwo;",
-			"  }",
-			"  return number;",
-			"};"
+			"    if (!boundTwo) {",
+			"        return Math.max(number, boundOne) === boundOne ? number : boundOne; ",
+			"    } else if (Math.min(number, boundOne) === number) {",
+			"        return boundOne;",
+			"    } else if (Math.max(number, boundTwo) === number) {",
+			"        return boundTwo;",
+			"    }",
+			"",
+			"    return number;",
+			"};$0"
 		],
 		"description": "Clamps `number` within the inclusive `lower` and `upper` bounds."
 	},
 	"inRange": {
 		"prefix": "_inRange",
 		"body": [
-			"const inRange = (num, a, b=0) => (Math.min(a,b) <= num && num < Math.max(a,b));"
+			"const inRange = (num, a, b=0) => (Math.min(a,b) <= num && num < Math.max(a,b));$0"
 		],
 		"description": "Checks if `n` is between `start` and up to, but not including, `end`. If\n`end` is not specified, it's set to `start` with `start` then set to `0`.\nIf `start` is greater than `end` the params are swapped to support\nnegative ranges."
 	},
@@ -498,10 +498,21 @@
 		"prefix": "_random",
 		"body": [
 			"const random = (a = 1, b = 0) => {",
-			"  const lower = Math.min(a, b);",
-			"  const upper = Math.max(a, b);",
-			"  return lower + Math.random() * (upper - lower);",
-			"}'"
+			"    const lower = Math.min(a, b);",
+			"    const upper = Math.max(a, b);",
+			"    return lower + Math.random() * (upper - lower);",
+			"};$0"
+		],
+		"description": "Produces a random number between the inclusive `lower` and `upper` bounds.\nIf only one argument is provided a number between `0` and the given number\nis returned. If `floating` is `true`, or either `lower` or `upper` are\nfloats, a floating-point number is returned instead of an integer.\n\n**Note:** JavaScript follows the IEEE-754 standard for resolving\nfloating-point values which can produce unexpected results."
+	},
+	"randomInt": {
+		"prefix": "_randomInt",
+		"body": [
+			"const randomInt = (a = 1, b = 0) => {",
+			"    const lower = Math.ceil(Math.min(a, b));",
+			"    const upper = Math.floor(Math.max(a, b));",
+			"    return Math.floor(lower + Math.random() * (upper - lower + 1))",
+			"};$0"
 		],
 		"description": "Produces a random number between the inclusive `lower` and `upper` bounds.\nIf only one argument is provided a number between `0` and the given number\nis returned. If `floating` is `true`, or either `lower` or `upper` are\nfloats, a floating-point number is returned instead of an integer.\n\n**Note:** JavaScript follows the IEEE-754 standard for resolving\nfloating-point values which can produce unexpected results."
 	}
