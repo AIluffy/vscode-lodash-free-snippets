@@ -1,11 +1,12 @@
 {
 	"name": "lodash-free-snippets",
 	"displayName": "lodash-free-snippets",
-	"description": "",
-	"version": "0.0.1",
+	"description": "code snippets for you dont need lodash",
+	"version": "1.0.0",
 	"engines": {
 		"vscode": "^1.42.0"
 	},
+	"publisher": "ailuffy",
 	"categories": [
 		"Snippets"
 	],
